@@ -71,7 +71,7 @@
             "description": "Accept steam license",
             "type": "enum",
             "default": "DECLINE",
-            "validation": "DECLINE,I ACCEPT"
+            "validation": "DECLINE,I AGREE"
         }
     }
 }
