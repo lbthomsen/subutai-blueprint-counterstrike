@@ -24,9 +24,6 @@
   remote_user: root
   tasks: 
 
-    - name: Save license
-      raw: echo "steamcmd steam/question string {{ steam_license }}" >/tmp/selections
-
     - name: Agree to license 
       raw: echo "steamcmd steam/question string {{ steam_license }}" | debconf-set-selections
 
