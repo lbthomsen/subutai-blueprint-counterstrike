@@ -1,0 +1,67 @@
+{
+    "name": "${environmentName}",
+    "description": "Counter-strike Server",
+    "version": "0.0.1",
+    "author": "https://github.com/lbthomsen",
+    "ssh-key": "lth",
+    "containers": [
+        {
+            "hostname": "css",
+            "template": "debian-stretch",
+            "peer-criteria": "SRV-GROUP",
+            "size": "${containerSize}",
+            "port-mapping": [
+                {
+                    "protocol": "tcp",
+                    "domain": "${domain}",
+                    "internal-port": "25565",
+                    "external-port": "${port}"
+                }
+            ]
+        }
+    ],
+    "peer-criteria": [
+        {
+            "name": "SRV-GROUP",
+            "max-price": "25"
+        }
+    ],
+    "ansible-configuration": {
+        "source-url": "https://github.com/lbthomsen/subutai-blueprint-counterstrike/archive/master.zip",
+        "ansible-playbook": "site.yml",
+        "extra-vars": [
+            {
+                "key": "domain_name",
+                "value": "${domain}"
+            }
+        ],
+        "groups": [
+            {
+                "name": "css",
+                "hostnames": [
+                    "css"
+                ]
+            }
+        ]
+    },
+    "user-variables": {
+        "environmentName": {
+            "description": "Enter the environment name",
+            "type": "string",
+            "default": "mc",
+            "validation": "[a-zA-Z0-9]+"
+        },
+        "domain": {
+            "description": "Enter the application domain name",
+            "type": "domain",
+            "default": "change.the.domain",
+            "validation": "[a-zA-Z0-9]+"
+        },
+        "containerSize": {
+            "description": "Container Size",
+            "type": "enum",
+            "default": "TINY",
+            "validation": "SMALL,MEDIUM,LARGE,HUGE"
+        }
+    }
+}
