@@ -5,6 +5,9 @@
   remote_user: root
   tasks: 
 
+    - name: Add i386 architecture
+      raw: dpkg --print-foreign-architectures | grep "i386" || dpkg --add-architecture i386
+
     - name: Update
       raw: apt-get -y --allow-unauthenticated update || true
 
@@ -20,6 +23,9 @@
 - hosts: css
   remote_user: root
   tasks: 
+
+    - name: Agree to license 
+      raw: echo steamcmd steam/question string {{ steam_license }} | debconf-set-selections
 
     - name: Install steamcmd
       apt:

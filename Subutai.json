@@ -33,6 +33,10 @@
             {
                 "key": "domain_name",
                 "value": "${domain}"
+            }, 
+            {
+                "key": "steam_license",
+                "value": "${steamLicense}"
             }
         ],
         "groups": [
@@ -62,6 +66,12 @@
             "type": "enum",
             "default": "TINY",
             "validation": "SMALL,MEDIUM,LARGE,HUGE"
+        }, 
+        "steamLicense": {
+            "description": "Accept steam license",
+            "type": "enum",
+            "default": "DECLINE",
+            "validation": "DECLINE,I ACCEPT"
         }
     }
 }
